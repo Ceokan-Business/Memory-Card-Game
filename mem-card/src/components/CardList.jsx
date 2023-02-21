@@ -29,6 +29,7 @@ const CardList = (props) => {
     };
 
     return (
+        <>
         <section className="card-list">
             {cardList.map(card => { 
                 return (
@@ -41,6 +42,7 @@ const CardList = (props) => {
                 )
             })}
         </section>
+        </>
     )
 };
 
