@@ -1,0 +1,35 @@
+.card-list { 
+    display: flex;
+    flex-flow: row;
+
+    justify-content: center;
+}
+
+.card { 
+    background-color: #457B9D;
+    width: fit-content;
+    padding: 1rem;
+    margin: 1rem;
+
+    text-align: center;
+    font-size: 1rem;
+
+    color: white;
+    border-radius: 10px;
+    border: 5px solid #1D3557;
+}
+
+.card img { 
+    border-radius: 10px;
+}
+
+.card p { 
+    padding: .5rem;
+    background-color: #E63946;
+    border-radius: 10px;
+}
+
+.card:hover { 
+    outline: 10px solid #E63946;
+    outline-offset: 5px;
+}
