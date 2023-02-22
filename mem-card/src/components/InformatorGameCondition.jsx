@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CONDITIONS } from "./ObjectConditions";
 
 const InformatorGameCondition = (props) => { 
-    const { gameCondition } = props;
+    const { gameCondition, onTryAgain, onNewLevel } = props;
 
     const handleInfoClasses = () =>  { 
         let classes; 
@@ -13,9 +13,18 @@ const InformatorGameCondition = (props) => {
     }
 
     return( 
-        <p
-            className= { handleInfoClasses()}
-        > { gameCondition }</p>
+        <> 
+            <p
+                className= { handleInfoClasses()} > { gameCondition }</p>
+            { gameCondition === CONDITIONS.WIN && <button
+                onClick={ onNewLevel } >Next Level</button> }
+            { gameCondition === CONDITIONS.LOSE && 
+            <section className="buttons-holder">
+            <button className="try-again-button"
+                onClick={onTryAgain} >Try Again</button>
+            <button className="main-menu-button">Main Menu</button>
+            </section> }
+        </>
     )
 };
 

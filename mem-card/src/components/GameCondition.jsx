@@ -4,12 +4,14 @@ import InformatorGameCondition from "./InformatorGameCondition";
 import CardList from "./CardList";
 
 const GameConditionShow = (props) => { 
-    const { images, length } = props;
+    const { images, length, handleNewLevel } = props;
     const [cardList, setCardList] = useState([]);
-    const [gameCondition, setGameCondition] = useState (CONDITIONS.IN_GAME);
+    const [gameCondition, setGameCondition] = useState(CONDITIONS.IN_GAME);
     const [pressed, setPressed] = useState({});
     const [timesHit, setTimesHit] = useState(0);
 
+
+    /* Effects */
     useEffect( () => { 
         let mountCardList = [];
         for(let i = 0; i < images.length; i++) { 
@@ -19,6 +21,12 @@ const GameConditionShow = (props) => {
         setCardList(mountCardList);
     }, []); 
 
+    useEffect( () => { 
+        handleCards();
+    })
+
+
+    /* Select Card Functionality */
     function selectPressed(cardToVerify) { 
         cardList.forEach( card => { 
             if(card.id === cardToVerify.id) { 
@@ -48,10 +56,27 @@ const GameConditionShow = (props) => {
         }
 };
 
-    useEffect( () => { 
-        handleCards();
-    })
+    /* Buttons Functionality */
 
+    const handleTryAgain = () => { 
+        /* Mount Card List */
+        let mountCardList = [];
+        for(let i = 0; i < length; i++) { 
+            mountCardList[i] = images[i];
+            mountCardList[i].selected = false;
+        }
+
+        setCardList(mountCardList);
+        setGameCondition(CONDITIONS.IN_GAME)
+        setPressed( {} );
+        setTimesHit(0);
+    }
+
+    const handleGoMainMenu = () => { 
+
+    }
+
+    /* UI */
     return ( 
         <>
         {cardList.length === 0 && <button 
@@ -71,7 +96,10 @@ const GameConditionShow = (props) => {
            
             { gameCondition !== CONDITIONS.IN_GAME && 
                 <section className="informator-holder">
-                <InformatorGameCondition gameCondition = {gameCondition}/> 
+                <InformatorGameCondition gameCondition = {gameCondition} 
+                    onNewLevel = { handleNewLevel }
+                    onTryAgain = { handleTryAgain }
+                    onMainMenu = { handleGoMainMenu } /> 
                 </section>
             }
             </> }
