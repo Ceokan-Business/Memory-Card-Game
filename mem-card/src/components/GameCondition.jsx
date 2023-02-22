@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { CONDITIONS } from "./ObjectConditions";
 import CardList from "./CardList";
 
 const GameConditionShow = (props) => { 
-    const { images, pressed, onSelectCard, length } = props;
+    const { images, length } = props;
     const [cardList, setCardList] = useState([]);
-    const [gameCondition, setGameCondition] = useState ("Choose a card");
+    const [gameCondition, setGameCondition] = useState (CONDITIONS.IN_GAME);
+    const [pressed, setPressed] = useState({});
+    const [timesHit, setTimesHit] = useState(0);
 
     useEffect( () => { 
         let mountCardList = [];
@@ -15,43 +18,50 @@ const GameConditionShow = (props) => {
         setCardList(mountCardList);
     }, []); 
 
-       const checkStopGame = () => { 
-        console.log(cardList);
-        cardList.map(card => {
-            if(card === pressed && card.selected === true) { 
-                setGameCondition("You losed");
+    function selectPressed(cardToVerify) { 
+        let index; 
+        cardList.forEach( card => { 
+            if(card.id === cardToVerify.id) { 
+                if(card.selected === true) setGameCondition(CONDITIONS.LOSE)
+                setPressed(card);
             }
+            return card;
         });
 
-        console.log(gameCondition);
-    };
-
-    const updateSelector = () => { 
-        let cardListToUpdate = cardList; 
-        cardListToUpdate.map(card => { 
-            if(card === pressed && gameCondition === "Choose a card") { 
-                card.selected = true;
-                return card;
-            }
-        });
-
-        setCardList(cardListToUpdate);
+        if(gameCondition === CONDITIONS.IN_GAME)
+            setTimesHit(timesHit + 1);
     }
 
+    async function handleCards () {
+        if(gameCondition === CONDITIONS.IN_GAME) { 
+            
+            if(timesHit === length) setGameCondition(CONDITIONS.WIN);
+            let cardListToUpdate = cardList; 
+            cardListToUpdate.map(card => { 
+                if(card === pressed) { 
+                    card.selected = true;
+                }
+
+                return card;
+            })
+            setCardList(cardListToUpdate);
+        }
+};
+
     useEffect( () => { 
-        checkStopGame();
-        updateSelector();
-    }, [cardList, gameCondition])
+        handleCards();
+    })
 
     return ( 
         <>
         {cardList.length === 0 && <button 
             className="start-level-button"
-            onClick={ () => {setCardList(images); console.log(gameCondition)}}>Start Level</button>}
+            onClick={ () => {setCardList(images)}}>Start Level</button>}
 
         {cardList.length !== 0 &&
             <>
-            <CardList length = { length } onSelectCard = {onSelectCard} cardList = { cardList } />
+            <p> { gameCondition } </p>
+            <CardList length = { length } selectPressed = { selectPressed } cardList = { cardList } pressed = {pressed} />
             </> }
         </>
     )

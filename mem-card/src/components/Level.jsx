@@ -8,7 +8,6 @@ const unsplash = createApi({
 
 const Level = (props) => {
     const [images, setImages] = useState([]);
-    const [pressed, setPressed] = useState({});
     
     useEffect(() => {
         let arrToSetImages = []; 
@@ -37,19 +36,21 @@ const Level = (props) => {
          }).then( () => { setImages(arrToSetImages)});
     }, [props.length]);
 
-    const selectCard = (cardToVerify) => { 
+/*     const selectCard = (cardToVerify) => { 
         images.forEach( card => { 
         if(card.id === cardToVerify.id) { 
             setPressed(card);
+            console.log(pressed);
         }
 
+
         return card;
-    });
-};
+    }); */
+/* }; */
 
     return (  
         <>
-            <GameConditionShow length = { props.length } images= { images } pressed = { pressed }  onSelectCard = {selectCard }/>
+            <GameConditionShow length = { props.length } images= { images } />
         </>
     )
 };

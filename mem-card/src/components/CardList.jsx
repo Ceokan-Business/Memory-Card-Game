@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import Card from "./Card.jsx";
 
 const CardList = (props) => { 
-    const { cardList, onSelectCard } = props;
+    const { cardList, selectPressed, pressed } = props;
 
     return (
         <>
@@ -10,7 +10,7 @@ const CardList = (props) => {
             {cardList.map(card => { 
                 return (
                     <article 
-                        onClick = { () => { onSelectCard(card)}}
+                        onClick = { () =>   { selectPressed(card) }}
                         key= {card.id}
                         className = "card" >
                             <Card name = {card.name} imageUrl = {card.url}/> 
