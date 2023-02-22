@@ -28,3 +28,35 @@ header h1 {
     text-align: center;
     font-size: 2rem;
 }
+
+.start-level-button { 
+    background-color: #E63946;
+    border: none; 
+    padding: 2rem;
+
+    font-size: 2rem;
+    font-weight: 600;
+    color: white;
+    width: 6rem;
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    min-width: 20vw;
+    min-height: 10vh;
+
+    display: grid;
+    place-content: center;
+
+    border-radius: 20px;
+}
+
+.start-level-button:hover, .start-level-button:focus { 
+    background-color: #A8DADC;
+    color:#1D3557;
+
+    font-weight: 900;
+    font-size: 2.5rem;
+}

@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import CardList from "./CardList";
+import GameConditionShow from "./GameCondition";
 import { createApi } from 'unsplash-js';
 
 const unsplash = createApi({
@@ -22,8 +22,6 @@ const Level = (props) => {
                 orientation: 'portrait'
             });
 
-            console.log(arr);
-
             return arr;
          }
 
@@ -41,7 +39,7 @@ const Level = (props) => {
 
     const selectCard = (cardToVerify) => { 
         images.forEach( card => { 
-        if(card.ID === cardToVerify.ID) { 
+        if(card.id === cardToVerify.id) { 
             setPressed(card);
         }
 
@@ -51,7 +49,7 @@ const Level = (props) => {
 
     return (  
         <>
-            <CardList length = {props.length} images = {images} onSelectCard = {selectCard }/>
+            <GameConditionShow length = { props.length } images= { images } pressed = { pressed }  onSelectCard = {selectCard }/>
         </>
     )
 };
