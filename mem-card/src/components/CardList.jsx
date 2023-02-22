@@ -1,43 +1,19 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import Card from "./Card.jsx";
 
 const CardList = (props) => { 
-    const [pressed, setPressed] = useState({});
-    const [cardList, setCardList] = useState([]);
-
-    useEffect( () => { 
-        let cards = [];
-
-        for(let i = 0; i < props.length; i++) { 
-            cards[i] = {name: i, 
-                selected: false, 
-                imageUrl: "https://picsum.photos/200/300", 
-                ID: i }
-        }
-
-        setCardList(cards);
-    }, []);
-
-    const selectCard = (cardToVerify) => { 
-            cardList.forEach( card => { 
-            if(card.ID === cardToVerify.ID) { 
-                setPressed(card);
-            }
-
-            return card;
-        });
-    };
+    const { images, onSelectCard, pressed } = props;
 
     return (
         <>
         <section className="card-list">
-            {cardList.map(card => { 
+            {images.map(card => { 
                 return (
-                    <article
-                        onClick = { () => { selectCard(card)}}
-                        key= {card.ID}
+                    <article 
+                        onClick = { () => { onSelectCard(card)}}
+                        key= {card.id}
                         className = "card" >
-                            <Card name = {card.name} imageUrl = {card.imageUrl}/> 
+                            <Card name = {card.name} imageUrl = {card.url}/> 
                         </article>
                 )
             })}

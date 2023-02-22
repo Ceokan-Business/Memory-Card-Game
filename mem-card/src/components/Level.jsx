@@ -8,6 +8,7 @@ const unsplash = createApi({
 
 const Level = (props) => {
     const [images, setImages] = useState([]);
+    const [pressed, setPressed] = useState({});
     
     useEffect(() => {
         let arrToSetImages = []; 
@@ -21,6 +22,8 @@ const Level = (props) => {
                 orientation: 'portrait'
             });
 
+            console.log(arr);
+
             return arr;
          }
 
@@ -28,17 +31,27 @@ const Level = (props) => {
             for (let i = 0; i < props.length; i++)  { 
                 arrToSetImages[i]= { 
                         name: arr.response.results[i].alt_description,
+                        selected: false,
                         id: arr.response.results[i].id,
-                        url: arr.response.results[i].links.html
+                        url: arr.response.results[i].urls.small_s3
                     };
             }
          }).then( () => { setImages(arrToSetImages)});
-    }, []);
+    }, [props.length]);
+
+    const selectCard = (cardToVerify) => { 
+        images.forEach( card => { 
+        if(card.ID === cardToVerify.ID) { 
+            setPressed(card);
+        }
+
+        return card;
+    });
+};
+
     return (  
         <>
-            {images.map (image => { 
-                return <pre key={image.id}>{ JSON.stringify(image) }</pre>
-            })}
+            <CardList length = {props.length} images = {images} onSelectCard = {selectCard }/>
         </>
     )
 };
