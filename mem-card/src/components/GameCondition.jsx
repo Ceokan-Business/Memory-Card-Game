@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { CONDITIONS } from "./ObjectConditions";
+import InformatorGameCondition from "./InformatorGameCondition";
 import CardList from "./CardList";
 
 const GameConditionShow = (props) => { 
@@ -19,7 +20,6 @@ const GameConditionShow = (props) => {
     }, []); 
 
     function selectPressed(cardToVerify) { 
-        let index; 
         cardList.forEach( card => { 
             if(card.id === cardToVerify.id) { 
                 if(card.selected === true) setGameCondition(CONDITIONS.LOSE)
@@ -60,8 +60,20 @@ const GameConditionShow = (props) => {
 
         {cardList.length !== 0 &&
             <>
-            <p> { gameCondition } </p>
-            <CardList length = { length } selectPressed = { selectPressed } cardList = { cardList } pressed = {pressed} />
+            <p className="times-hit">Cards selected: { timesHit} { `/${length}` }</p>
+            
+            {gameCondition === CONDITIONS.IN_GAME && 
+             <CardList length = { length } 
+                selectPressed = { selectPressed } 
+                cardList = { cardList } 
+                gameCondition = {gameCondition} />
+            }
+           
+            { gameCondition !== CONDITIONS.IN_GAME && 
+                <section className="informator-holder">
+                <InformatorGameCondition gameCondition = {gameCondition}/> 
+                </section>
+            }
             </> }
         </>
     )

@@ -1,5 +1,5 @@
 export const CONDITIONS = {
-  IN_GAME: 'Please, choose a card',
+  IN_GAME: '',
   WIN: 'Congratulations, you won!',
   LOSE: 'You already selected this card.',
 };

@@ -35,3 +35,35 @@
     outline: 10px solid #E63946;
     outline-offset: 5px;
 }
+
+.informator-holder {
+    min-height: 60vh; 
+    display: flex; 
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+
+    flex-flow: column;
+}
+
+.winner-informator { 
+    background-color: #84f66d;
+    width: fit-content;
+
+    font-size: 2rem;
+    padding: 1.5rem;
+
+    border-radius: 20px;
+}
+
+
+.loser-informator { 
+    background-color: #E63946;
+    width: fit-content;
+
+    font-size: 2rem;
+    padding: 1.5rem;
+
+    border-radius: 20px;
+    color: white;
+}
