@@ -23,6 +23,7 @@ const GameConditionShow = (props) => {
 
     useEffect( () => { 
         handleCards();
+        setCardList(images);
     })
 
 
@@ -79,9 +80,6 @@ const GameConditionShow = (props) => {
     /* UI */
     return ( 
         <>
-        {cardList.length === 0 && <button 
-            className="start-level-button"
-            onClick={ () => {setCardList(images)}}>Start Level</button>}
 
         {cardList.length !== 0 &&
             <>
