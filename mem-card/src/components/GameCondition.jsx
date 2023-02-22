@@ -4,13 +4,13 @@ import InformatorGameCondition from "./InformatorGameCondition";
 import CardList from "./CardList";
 
 const GameConditionShow = (props) => { 
-    const { images, length, handleNewLevel } = props;
+    const { images, length, handleNewLevel, level } = props;
     const [cardList, setCardList] = useState([]);
     const [gameCondition, setGameCondition] = useState(CONDITIONS.IN_GAME);
     const [pressed, setPressed] = useState({});
     const [timesHit, setTimesHit] = useState(0);
 
-
+    const [firstLevel, setFirstLevel] = useState(true);
     /* Effects */
     useEffect( () => { 
         let mountCardList = [];
@@ -23,7 +23,8 @@ const GameConditionShow = (props) => {
 
     useEffect( () => { 
         handleCards();
-        setCardList(images);
+        if(level > 1)
+            setCardList(images);
     })
 
 
@@ -80,6 +81,10 @@ const GameConditionShow = (props) => {
     /* UI */
     return ( 
         <>
+        { level === 1 && firstLevel === true && <button className="start-level-button" onClick = { () => { 
+            setCardList(images);
+            setFirstLevel(false);
+        }}>Start Level</button> }
 
         {cardList.length !== 0 &&
             <>

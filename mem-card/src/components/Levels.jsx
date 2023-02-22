@@ -10,22 +10,22 @@ const Levels = () => {
 
     return (
         <>
-            <p> Level: { level } </p>
+            <h2> Level: { level } </h2>
             {level === 1 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } /> }
+                length = {level + 2 } level = { level }/> }
             {level === 2 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } /> }
+                length = {level + 2 } level = { level } /> }
             {level === 3 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } /> }
+                length = {level + 2 } level = { level } /> }
             {level === 4 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } /> }
+                length = {level + 2 }  level = { level }/> }
             {level === 5 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } /> }
+                length = {level + 2 }  level = { level }/> }
         </>
     )
 };

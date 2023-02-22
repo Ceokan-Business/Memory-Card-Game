@@ -19,10 +19,12 @@ h1 {
     padding: 1rem;
 }
 
-header h2, header p{ 
-    margin-left: .5rem;
+h2 { 
     padding: .5rem;
+    padding-left: 1rem;
     margin-bottom: 0; 
+    color: white;
+    background-color: #1D3557;
 }
 
 .times-hit{ 
