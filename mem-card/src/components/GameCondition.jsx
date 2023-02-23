@@ -3,6 +3,7 @@ import { CONDITIONS } from "./ObjectConditions";
 import InformatorGameCondition from "./InformatorGameCondition";
 import shuffle from "./helperFunctions";
 import CardList from "./CardList";
+import QuoteGenerator from "./quoteGenerator";
 
 const GameConditionShow = (props) => { 
     const { images, handleNewLevel, length } = props;
@@ -75,10 +76,16 @@ const GameConditionShow = (props) => {
     /* UI */
     return ( 
         <>
-        { outOfLevel === true && <button className="start-level-button" onClick = { () => { 
-            setCardList(images);
-            setOutOfLevel(false)
-        }}>Start Level</button> }
+        { outOfLevel === true && 
+            <section className="start-level-section">
+                <button className="start-level-button" onClick = { () => { 
+                setCardList(images);
+                setOutOfLevel(false)
+                }}>Start Level</button>
+
+                <QuoteGenerator />
+            </section>
+         }
 
         {cardList.length !== 0 &&
             <>

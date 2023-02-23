@@ -15,10 +15,9 @@ const Level = (props) => {
         async function fetchImages () {
             let arr;
             arr = await unsplash.search.getPhotos({ 
-                query: 'cat',
+                query: 'food',
                 page: 1,
-                perPage: 10,
-                color: 'green',
+                perPage: 30,
                 orientation: 'portrait'
             });
 
