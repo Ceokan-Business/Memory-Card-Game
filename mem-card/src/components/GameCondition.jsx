@@ -1,32 +1,26 @@
 import React, { useState, useEffect } from "react";
 import { CONDITIONS } from "./ObjectConditions";
 import InformatorGameCondition from "./InformatorGameCondition";
+import shuffle from "./helperFunctions";
 import CardList from "./CardList";
 
 const GameConditionShow = (props) => { 
-    const { images, length, handleNewLevel, level } = props;
+    const { images, handleNewLevel, length } = props;
     const [cardList, setCardList] = useState([]);
     const [gameCondition, setGameCondition] = useState(CONDITIONS.IN_GAME);
     const [pressed, setPressed] = useState({});
     const [timesHit, setTimesHit] = useState(0);
+    const [outOfLevel, setOutOfLevel] = useState(true);
 
-    const [firstLevel, setFirstLevel] = useState(true);
+    function handleShuffle  () { 
+        let shuffledCardList = shuffle(cardList);
+        setCardList(shuffledCardList);
+    }
+
     /* Effects */
     useEffect( () => { 
-        let mountCardList = [];
-        for(let i = 0; i < images.length; i++) { 
-            mountCardList[i] = images[i];
-        }
-
-        setCardList(mountCardList);
-    }, []); 
-
-    useEffect( () => { 
         handleCards();
-        if(level > 1)
-            setCardList(images);
-    })
-
+    });
 
     /* Select Card Functionality */
     function selectPressed(cardToVerify) { 
@@ -38,8 +32,9 @@ const GameConditionShow = (props) => {
             return card;
         });
 
-        if(gameCondition === CONDITIONS.IN_GAME)
+        if(gameCondition === CONDITIONS.IN_GAME) {
             setTimesHit(timesHit + 1);
+        }
     }
 
     async function handleCards () {
@@ -59,7 +54,6 @@ const GameConditionShow = (props) => {
 };
 
     /* Buttons Functionality */
-
     const handleTryAgain = () => { 
         /* Mount Card List */
         let mountCardList = [];
@@ -81,9 +75,9 @@ const GameConditionShow = (props) => {
     /* UI */
     return ( 
         <>
-        { level === 1 && firstLevel === true && <button className="start-level-button" onClick = { () => { 
+        { outOfLevel === true && <button className="start-level-button" onClick = { () => { 
             setCardList(images);
-            setFirstLevel(false);
+            setOutOfLevel(false)
         }}>Start Level</button> }
 
         {cardList.length !== 0 &&
@@ -93,6 +87,7 @@ const GameConditionShow = (props) => {
             {gameCondition === CONDITIONS.IN_GAME && 
              <CardList length = { length } 
                 selectPressed = { selectPressed } 
+                handleShuffle = { handleShuffle }
                 cardList = { cardList } 
                 gameCondition = {gameCondition} />
             }

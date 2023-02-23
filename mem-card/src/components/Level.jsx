@@ -8,7 +8,7 @@ const unsplash = createApi({
 
 const Level = (props) => {
     const [images, setImages] = useState([]);
-    const { length, handleNewLevel, level } = props;
+    const { handleNewLevel, level, length } = props;
     
     useEffect(() => {
         let arrToSetImages = []; 
@@ -36,8 +36,8 @@ const Level = (props) => {
                         url: arr.response.results[i].urls.small_s3
                     };
             }
-         }).then( () => { setImages(arrToSetImages)});
-    }, [length]);
+         }).then( () => { setImages(arrToSetImages);});
+    }, [length, level]);
 
     return (  
         <>

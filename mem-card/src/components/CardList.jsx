@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Card from "./Card.jsx";
-import { CONDITIONS } from "./ObjectConditions.js";
 
 const CardList = (props) => { 
-    const { cardList, selectPressed, gameCondition} = props;
+    const { cardList, selectPressed, handleShuffle} = props;
 
 
     return (
@@ -12,7 +11,7 @@ const CardList = (props) => {
             {cardList.map(card => { 
                 return (
                     <article 
-                        onClick = { () => { selectPressed(card) }}
+                        onClick = { () => { selectPressed(card); handleShuffle() }}
                         key= {card.id}
                         className = "card" >
                             <Card name = {card.name} imageUrl = {card.url}/> 
