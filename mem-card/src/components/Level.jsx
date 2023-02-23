@@ -22,6 +22,8 @@ const Level = (props) => {
                 orientation: 'portrait'
             });
 
+            console.log(arr)
+
             return arr;
          }
 
