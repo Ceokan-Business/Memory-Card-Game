@@ -1,0 +1,41 @@
+.intro-header { 
+    height: 100vh;
+
+    outline: double 10px red white;
+    outline-offset: -10rem;
+}
+
+.intro-h1 { 
+    font-size: 5rem;
+    position: fixed;
+    left: 50%;
+    top: 30%;
+
+    transform: translate(-50%);
+}
+
+.intro-button {
+    position: fixed;
+    
+    font-size: 3rem;
+    padding: 1rem;
+    border-radius: 20px;
+
+    color: white;
+    background-color: #e63946;
+    border: none;
+
+    top: 50%;
+    left: 50%;
+
+    transform: translate(-50%, -50%);
+    margin-top: 1rem;
+}
+
+.intro-button:hover, .intro-button:focus { 
+    background-color: #A8DADC;
+    color:#1D3557;
+
+    font-weight: 900;
+    font-size: 2.5rem;
+}
