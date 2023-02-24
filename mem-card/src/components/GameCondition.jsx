@@ -4,6 +4,7 @@ import InformatorGameCondition from "./InformatorGameCondition";
 import shuffle from "./helperFunctions";
 import CardList from "./CardList";
 import QuoteGenerator from "./quoteGenerator";
+import Alert from "./Alert";
 
 const GameConditionShow = (props) => { 
     const { images, handleNewLevel, length, backToThemePage } = props;
@@ -12,6 +13,8 @@ const GameConditionShow = (props) => {
     const [pressed, setPressed] = useState({});
     const [timesHit, setTimesHit] = useState(0);
     const [outOfLevel, setOutOfLevel] = useState(true);
+    const [notifications, setNotifications] = useState(false);
+    const [functional, setFunctional] = useState(true);
 
     function handleShuffle  () { 
         let shuffledCardList = shuffle(cardList);
@@ -22,6 +25,18 @@ const GameConditionShow = (props) => {
     useEffect( () => { 
         handleCards();
     });
+
+    const handleShowAlert = () => {
+        if(functional) { 
+            setNotifications(true);
+            setFunctional(false);
+        }
+    };
+
+    const handleCancel = () => { 
+        setFunctional(true);
+        setNotifications(false);
+    }
 
     /* Select Card Functionality */
     function selectPressed(cardToVerify) { 
@@ -56,21 +71,19 @@ const GameConditionShow = (props) => {
 
     /* Buttons Functionality */
     const handleTryAgain = () => { 
-        /* Mount Card List */
-        let mountCardList = [];
-        for(let i = 0; i < length; i++) { 
-            mountCardList[i] = images[i];
-            mountCardList[i].selected = false;
+        if(functional) { 
+            /* Mount Card List */
+            let mountCardList = [];
+            for(let i = 0; i < length; i++) { 
+                mountCardList[i] = images[i];
+                mountCardList[i].selected = false;
+            }
+
+            setCardList(mountCardList);
+            setGameCondition(CONDITIONS.IN_GAME)
+            setPressed( {} );
+            setTimesHit(0);
         }
-
-        setCardList(mountCardList);
-        setGameCondition(CONDITIONS.IN_GAME)
-        setPressed( {} );
-        setTimesHit(0);
-    }
-
-    const handleGoMainMenu = () => { 
-
     }
 
     /* UI */
@@ -89,7 +102,16 @@ const GameConditionShow = (props) => {
 
         {cardList.length !== 0 &&
             <>
-            <p className="times-hit">Cards selected: { timesHit} { `/${length}` }</p>
+            <section className="in-level-informator">
+                <p className="times-hit">Cards selected: { timesHit} { `/${length}` }</p>
+                <section className="in-level-buttons">
+                    <button className="in-level-button"
+                        onClick={ handleTryAgain }> Restart </button>
+                    <button className = "in-level-button"
+                        onClick = { handleShowAlert }
+                    > Main Menu </button>
+                </section>
+            </section>
             
             {gameCondition === CONDITIONS.IN_GAME && 
              <CardList length = { length } 
@@ -103,11 +125,20 @@ const GameConditionShow = (props) => {
                 <section className="informator-holder">
                 <InformatorGameCondition gameCondition = {gameCondition} 
                     onNewLevel = { handleNewLevel }
-                    backToThemePage = { backToThemePage }
-                    onTryAgain = { handleTryAgain }
-                    onMainMenu = { handleGoMainMenu } /> 
+                    functional = { functional }
+                    backToThemePageAlert = { handleShowAlert }
+                    onTryAgain = { handleTryAgain } /> 
                 </section>
             }
+
+            {!functional && notifications && 
+                        <Alert description = "Are you sure you want to do this? Your progress will be lost."
+              onMainFunction  = { backToThemePage }
+              onCancel = { handleCancel }
+              boolFirstButton = { true }
+              firstButtonName = "YES"
+              boolSecondButton = { true }
+              secondButtonName = "NO"/> }
             </> }
         </>
     )

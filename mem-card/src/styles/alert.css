@@ -1,0 +1,57 @@
+.alerts-container { 
+    display: flex;
+    flex-flow: column;
+    width: fit-content;
+
+    margin: 0.5rem;
+}
+
+.alert { 
+    background-color: #003049;
+    width: fit-content;
+    color: white;
+    transform: skewX(-5deg);
+
+    text-align: center;
+
+    padding: 2rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    border-radius: 20px;
+
+}
+
+.alert-button { 
+    margin-inline: 1rem;
+    padding: 0.4rem;
+
+    border:none;
+    border-radius: 5px;
+    transform: skewX(-5deg);
+}
+
+.alert-description { 
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.alert-first-button { 
+    background-color: rgb(124, 255, 146);
+}
+
+.alert-first-button:hover, .alert-first-button:focus { 
+    background-color: rgb(1, 212, 1);
+    text-decoration: underline;
+}
+
+.alert-second-button { 
+    background-color: rgb(255, 143, 143);
+}
+
+.alert-second-button:hover, .alert-second-button:focus { 
+    background-color: red;
+    text-decoration: underline;
+}

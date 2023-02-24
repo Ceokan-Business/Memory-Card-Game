@@ -4,6 +4,7 @@ import './styles/intro.css'
 import "./styles/main.css";
 import "./styles/card.css";
 import "./styles/themes.css";
+import './styles/alert.css';
 
 const App = () => { 
   const [firstPage, setFirstPage] = useState(true);

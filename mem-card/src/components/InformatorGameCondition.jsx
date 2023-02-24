@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { CONDITIONS } from "./ObjectConditions";
 
 const InformatorGameCondition = (props) => { 
-    const { gameCondition, onTryAgain, onNewLevel, backToThemePage } = props;
+    const { gameCondition, onTryAgain, onNewLevel, backToThemePageAlert, functional } = props;
 
     const handleInfoClasses = () =>  { 
         let classes; 
@@ -19,10 +19,10 @@ const InformatorGameCondition = (props) => {
             { gameCondition === CONDITIONS.WIN && 
                 <section className="buttons-holder">
                 <button
-                onClick={ onNewLevel } 
+                onClick={ () => { if(functional) onNewLevel ()} } 
                 className = "next-level-button" >Next Level</button>
                 <button className="win-main-menu-button"
-                    onClick={ backToThemePage } >Main Menu</button>
+                    onClick={ backToThemePageAlert } >Main Menu</button>
                 <button className="restart-level-button"
                     onClick = { onTryAgain } > Restart Level </button>
                 </section> }
@@ -31,7 +31,7 @@ const InformatorGameCondition = (props) => {
             <section className="buttons-holder">
             <button className="try-again-button"
                 onClick={onTryAgain} >Try Again</button>
-            <button className="main-menu-button" onClick={ backToThemePage }>Main Menu</button>
+            <button className="main-menu-button" onClick={ backToThemePageAlert }>Main Menu</button>
             </section> }
         </>
     )

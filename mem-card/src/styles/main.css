@@ -90,3 +90,34 @@ header h1 {
 
     font-family: 'Handlee', cursive;
 }
+
+.in-level-informator  { 
+    background-color: #1D3557;
+    display: flex;
+}
+
+.in-level-buttons { 
+    display: grid;
+    grid-template-columns: repeat(2, 3rem);
+
+    grid-template-rows: 2.5rem;
+    place-content: center;
+
+    column-gap: .5rem;
+    justify-content: end;
+}
+
+.in-level-button  { 
+    background-color: #E63946;
+    border-radius: 20px;
+
+    color: white;
+    border: none;
+}
+
+.in-level-button:hover, .in-level-button:focus { 
+    background-color: #A8DADC;
+    color:#1D3557;
+
+    font-weight: 900;
+}
