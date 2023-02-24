@@ -1,8 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Level from "./Level";
 
-const Levels = () => { 
+const Levels = (props)  => { 
     const [level, setLevel] = useState (1);
+    const { theme } = props; 
+
+    useEffect( () => { 
+        console.log(theme);
+    }, [] )
 
     const handleNewLevel = () => { 
         setLevel(level + 1);
@@ -13,19 +18,19 @@ const Levels = () => {
             <h2> Level: { level } </h2>
             {level === 1 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } level = { level }/> }
+                length = { level + 2 } theme = {theme} level = { level }/> }
             {level === 2 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } level = { level } /> }
+                length = {level + 2 }  theme = {theme} level = { level } /> }
             {level === 3 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 } level = { level } /> }
+                length = {level + 2 } theme = {theme} level = { level } /> }
             {level === 4 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 }  level = { level }/> }
+                length = {level + 2 } theme = {theme} level = { level }/> }
             {level === 5 && <Level 
                 handleNewLevel = { handleNewLevel }
-                length = {level + 2 }  level = { level }/> }
+                length = {level + 2 } theme = {theme} level = { level }/> }
         </>
     )
 };

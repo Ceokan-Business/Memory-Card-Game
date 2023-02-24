@@ -44,9 +44,19 @@
     border: 5px solid #1D3557;    
 }
 
-.theme-option:hover, .theme-option:focus { 
+.theme-option:hover, .theme-option:focus, .selected { 
     outline: 10px solid #E63946;
     outline-offset: 5px;
+}
+
+.theme-option img { 
+    border-radius: 10px;
+}
+
+.theme-option p { 
+    padding: .5rem;
+    background-color: #E63946;
+    border-radius: 10px;
 }
 
 .themes-section-grid  {

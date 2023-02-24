@@ -8,20 +8,18 @@ const unsplash = createApi({
 
 const Level = (props) => {
     const [images, setImages] = useState([]);
-    const { handleNewLevel, level, length } = props;
+    const { handleNewLevel, level, length, theme } = props;
     
     useEffect(() => {
         let arrToSetImages = []; 
         async function fetchImages () {
             let arr;
             arr = await unsplash.search.getPhotos({ 
-                query: 'music',
+                query: `${theme}`,
                 page: 1,
                 perPage: 30,
                 orientation: 'portrait'
             });
-
-            console.log(arr)
 
             return arr;
          }

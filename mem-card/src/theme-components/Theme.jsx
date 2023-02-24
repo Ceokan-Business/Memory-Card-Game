@@ -1,10 +1,22 @@
 import React, { useState } from "react";
 
+
 const Theme = (props) => { 
-    const { theme } = props;
+    const { theme, selectTheme } = props;
+
+    const handleClasses = () =>  { 
+        let classes = "theme-option";
+        theme.selected === true ? classes = "theme-option selected" : classes = classes;
+
+        return classes;
+    }
+
     return ( 
-        <article className="theme-option">
-            { theme.query }
+        <article 
+            onClick={ () => { selectTheme(theme) }}
+            className= { handleClasses() }>
+            <img src={ theme.url} width = "200px" height = "300px" alt="...generating" />
+            <p> { theme.query } </p>
         </article>
     )
 };
