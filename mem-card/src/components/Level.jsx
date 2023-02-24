@@ -8,7 +8,7 @@ const unsplash = createApi({
 
 const Level = (props) => {
     const [images, setImages] = useState([]);
-    const { handleNewLevel, level, length, theme } = props;
+    const { handleNewLevel, level, length, theme, backToThemePage } = props;
     
     useEffect(() => {
         let arrToSetImages = []; 
@@ -39,6 +39,7 @@ const Level = (props) => {
     return (  
         <>
             <GameConditionShow 
+                backToThemePage = {backToThemePage}
                 length = { length }
                 level = { level }
                 handleNewLevel = { handleNewLevel }

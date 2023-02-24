@@ -8,6 +8,10 @@ import "./styles/themes.css";
 const App = () => { 
   const [firstPage, setFirstPage] = useState(true);
 
+  const goThemePage = () => { 
+    setFirstPage(false);
+  }
+
   return (
     <section className="app-container">
 
@@ -20,7 +24,7 @@ const App = () => {
 
             <h1 className="intro-h1">Memory Card</h1>
             <button 
-              onClick={() => { setFirstPage(false) }}
+              onClick={ goThemePage }
               className="intro-button">Play</button>
 
           </header>

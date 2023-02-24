@@ -6,8 +6,8 @@ import THEMES from "./ThemeObject";
 
 const Themes = () => { 
     const [themeOptions, setThemeOptions] = useState ([]);
-
     const [themePage, setThemePage] = useState(true);
+    const [levelsPage, setLevelsPage] = useState(false);
     const [finalTheme, setFinalTheme] = useState({name: THEMES[0].show_text, query: THEMES[0].fetch_text, id: 0, selected: true });
 
     async function createThemeArray() { 
@@ -22,6 +22,16 @@ const Themes = () => {
     useEffect ( () => { 
         createThemeArray();
     }, []);
+
+    const goLevelsPage = () => {
+        setThemePage(false);
+        setLevelsPage(true);
+    }
+
+    const backToThemePage = () => { 
+        setThemePage(true);
+        setLevelsPage(false);
+    }
 
     const selectTheme = (themeSelected) => { 
         let removeClassArray = themeOptions; 
@@ -47,14 +57,15 @@ const Themes = () => {
                 setFinalTheme(theme.query);
             }
 
+            goLevelsPage();
             return theme;
         });
-        setThemePage(false);
     }
 
     return(
         <>
         {themePage && <section className="themes-section">
+            <p className="themes-section-informator"> Please select a theme </p>
             <section className="themes-section-grid">
                 { themeOptions.map( theme => { 
                 return <Theme key = { theme.id } selectTheme = { selectTheme } theme = { theme }/> 
@@ -63,8 +74,8 @@ const Themes = () => {
             <button onClick={ handleSelectTheme }>Select Theme</button>
         </section>}
 
-        {!themePage&& <section className="play-game-page">
-          <Levels theme = { finalTheme }/>
+        {!themePage && levelsPage && <section className="play-game-page">
+          <Levels theme = { finalTheme } backToThemePage = {backToThemePage}/>
         </section>}
         </>
     )

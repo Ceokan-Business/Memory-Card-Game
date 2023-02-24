@@ -6,7 +6,7 @@ import CardList from "./CardList";
 import QuoteGenerator from "./quoteGenerator";
 
 const GameConditionShow = (props) => { 
-    const { images, handleNewLevel, length } = props;
+    const { images, handleNewLevel, length, backToThemePage } = props;
     const [cardList, setCardList] = useState([]);
     const [gameCondition, setGameCondition] = useState(CONDITIONS.IN_GAME);
     const [pressed, setPressed] = useState({});
@@ -103,6 +103,7 @@ const GameConditionShow = (props) => {
                 <section className="informator-holder">
                 <InformatorGameCondition gameCondition = {gameCondition} 
                     onNewLevel = { handleNewLevel }
+                    backToThemePage = { backToThemePage }
                     onTryAgain = { handleTryAgain }
                     onMainMenu = { handleGoMainMenu } /> 
                 </section>
