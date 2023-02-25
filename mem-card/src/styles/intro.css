@@ -1,34 +1,29 @@
 .intro-header { 
     height: 100vh;
-
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
     outline: double 10px red white;
     outline-offset: -10rem;
 }
 
 .intro-h1 { 
     font-size: 5rem;
-    position: fixed;
-    left: 50%;
-    top: 30%;
-
-    transform: translate(-50%);
+    padding-left: 0.5rem;
+    text-align: center;
+    margin-bottom: 1rem;
 }
 
-.intro-button {
-    position: fixed;
-    
+.intro-button { 
+    align-self: center;
     font-size: 3rem;
     padding: 1rem;
     border-radius: 20px;
 
+    width:90%;
     color: white;
     background-color: #e63946;
     border: none;
-
-    top: 50%;
-    left: 50%;
-
-    transform: translate(-50%, -50%);
     margin-top: 1rem;
 }
 

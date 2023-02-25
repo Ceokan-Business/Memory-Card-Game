@@ -1,0 +1,6 @@
+{
+  "dependencies": {
+    "unsplash-cli": "^1.2.0",
+    "unsplash-js": "^7.0.15"
+  }
+}

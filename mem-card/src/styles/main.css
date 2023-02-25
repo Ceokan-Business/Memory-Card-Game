@@ -41,6 +41,7 @@ header h1 {
 }
 
 .start-level-button { 
+    grid-area: 0/1/1/1;
     background-color: #E63946;
     border: none; 
     padding: 2rem;
@@ -49,12 +50,7 @@ header h1 {
     font-weight: 600;
     color: white;
     width: 6rem;
-
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-
+    margin:auto auto;
     min-width: 20vw;
     min-height: 10vh;
 
@@ -73,11 +69,9 @@ header h1 {
 }
 
 .quote { 
-    position: absolute;
-    top: 65%;
-    left: 50%;
 
-    transform: translate(-50%, -50%);
+    grid-area: 2/1/2/1;
+  
     font-size: 2rem;
 
     text-align: center;
@@ -120,4 +114,11 @@ header h1 {
     color:#1D3557;
 
     font-weight: 900;
+}
+.start-level-section{
+    height: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 2fr;
+    padding: 1rem;
 }

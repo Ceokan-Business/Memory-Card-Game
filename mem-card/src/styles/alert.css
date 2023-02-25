@@ -55,3 +55,17 @@
     background-color: red;
     text-decoration: underline;
 }
+
+
+/* button holder Shit   */
+.buttons-holder {
+    display:  flex;
+    justify-content: space-between;
+    padding: 1rem;
+}
+.buttons-holder button {
+    color: white;
+    background-color: #E63946;
+    border-radius: 10px;
+    padding: 0.5rem;
+}
